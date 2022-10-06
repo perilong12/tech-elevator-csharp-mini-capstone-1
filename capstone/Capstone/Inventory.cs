@@ -51,6 +51,13 @@ namespace Capstone
             {
                 Console.WriteLine();
             }
+
+
+        }
+
+        public void DisplaySalesReport()
+        {
+            //make the sales report
         }
     }
 }
