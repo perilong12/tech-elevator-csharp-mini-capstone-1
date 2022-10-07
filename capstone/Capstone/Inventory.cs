@@ -59,5 +59,25 @@ namespace Capstone
         {
             //make the sales report
         }
+
+        public decimal FeedMoney(decimal fedMoney)
+        {
+            bool success = false;
+            do
+            {
+                Console.WriteLine("Enter your money in whole dollar amounts please!");
+                string entry = Console.ReadLine();
+
+                success = Int32.TryParse(entry, out int result);
+
+                if (success == true)
+                {
+                    fedMoney += decimal.Parse(entry);
+                }
+            }
+            while (success == false);
+
+            return fedMoney;
+        }
     }
 }
