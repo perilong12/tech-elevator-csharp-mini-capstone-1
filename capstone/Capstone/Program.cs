@@ -15,11 +15,12 @@ namespace Capstone
             inv.Populate();
 
             bool isRunning = true;
-            decimal userMoney = 0;
             bool transaction = false;
+
 
             while(isRunning)
             {
+                decimal userMoney = 0;
                 Console.WriteLine("(1) Display Vending Machine Items");
                 Console.WriteLine("(2) Purchase");
                 Console.WriteLine("(3) Exit");
@@ -47,7 +48,9 @@ namespace Capstone
 
                         if (userInput.Equals("1"))
                         {
+                            
                             // feed money method
+                            userMoney = inv.FeedMoney(userMoney); 
                         }
                         else if (userInput.Equals("2"))
                         {
