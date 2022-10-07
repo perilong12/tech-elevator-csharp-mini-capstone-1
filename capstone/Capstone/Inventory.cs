@@ -49,7 +49,7 @@ namespace Capstone
         {
             foreach (Snack sn in VendingInventory.Values)
             {
-                Console.WriteLine();
+                Console.WriteLine($"{sn.Slot} | {sn.SnackName}: ${sn.Price}");
             }
 
 
