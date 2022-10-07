@@ -33,9 +33,26 @@ namespace Capstone
                     {
                         string[] snackTemp = sr.ReadLine().Split("|");
                         decimal pr = Decimal.Parse(snackTemp[2]);
-                        //Console.WriteLine(snackTemp[0] + " " + snackTemp[1] + " " + pr + " " + snackTemp[3]);
-                        Snack snack = new Snack(snackTemp[0], snackTemp[1], pr, snackTemp[3]);
-                        VendingInventory.Add(snackTemp[0], snack);
+                        if (snackTemp[3] == "Chip")
+                        {
+                            Chips snack = new Chips(snackTemp[0], snackTemp[1], pr, snackTemp[3]);
+                            VendingInventory.Add(snackTemp[0], snack);
+                        }
+                        if (snackTemp[3] == "Candy")
+                        {
+                            Candy snack = new Candy(snackTemp[0], snackTemp[1], pr, snackTemp[3]);
+                            VendingInventory.Add(snackTemp[0], snack);
+                        }
+                        if (snackTemp[3] == "Drink")
+                        {
+                            Drinks snack = new Drinks(snackTemp[0], snackTemp[1], pr, snackTemp[3]);
+                            VendingInventory.Add(snackTemp[0], snack);
+                        }
+                        if (snackTemp[3] == "Gum")
+                        {
+                            Gum snack = new Gum(snackTemp[0], snackTemp[1], pr, snackTemp[3]);
+                            VendingInventory.Add(snackTemp[0], snack);
+                        }
                     }
                 }
             }
@@ -78,6 +95,14 @@ namespace Capstone
             while (success == false);
 
             return fedMoney;
+        }
+        public decimal Dispense(string input, decimal money)
+        {
+            VendingInventory[input].Quantity--;
+            VendingInventory[input].TotalSold++;
+            money = money - VendingInventory[input].Price;
+            VendingInventory[input].DispenseMessage();
+            return money;
         }
     }
 }

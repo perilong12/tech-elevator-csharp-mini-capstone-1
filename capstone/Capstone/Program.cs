@@ -54,8 +54,31 @@ namespace Capstone
                         }
                         else if (userInput.Equals("2"))
                         {
-                            // select product
-                            // Dispense method
+                            Console.Write("Please Enter Slot:");
+                            string userSelectionInput = Console.ReadLine();
+                            if (inv.VendingInventory.ContainsKey(userSelectionInput))
+                            {
+                                if (inv.VendingInventory[userSelectionInput].Quantity>0)
+                                {
+                                    if(inv.VendingInventory[userSelectionInput].Price <= userMoney)
+                                    {
+                                        userMoney = inv.Dispense(userSelectionInput, userMoney);
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Insufficient Funds");
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Sold Out");
+                                }
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid Slot");
+                            }
                         }
                         else if (userInput.Equals("3"))
                         {

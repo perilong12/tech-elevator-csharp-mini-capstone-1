@@ -20,5 +20,9 @@ namespace Capstone
             this.Price = price;
             this.Type = type;
         }
+        public virtual void DispenseMessage()
+        {
+
+        }
     }
 }
