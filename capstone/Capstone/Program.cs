@@ -11,11 +11,16 @@ namespace Capstone
     {       
         static void Main(string[] args)
         {
+            string filePath = @"C:\Users\Student\git\c-sharp-minicapstonemodule1-team4";
+            string fileName = @"\Log.txt";
+            string fullPath = filePath + fileName;
+
             Inventory inv = new Inventory();
             inv.Populate();
 
             bool isRunning = true;
             bool transaction = false;
+            string log = "";
 
 
             while(isRunning)
@@ -37,7 +42,7 @@ namespace Capstone
                     
                     while(transaction == true)
                     {
-                        Console.WriteLine($"Current Money Provided {userMoney}");
+                        Console.WriteLine($"Current Money Provided {userMoney:C2}");
                         Console.WriteLine(" ");
 
                         Console.WriteLine("(1) Feed Money");
@@ -48,14 +53,14 @@ namespace Capstone
 
                         if (userInput.Equals("1"))
                         {
-                            
-                            // feed money method
-                            userMoney = inv.FeedMoney(userMoney); 
+                            decimal temp = userMoney;
+                            userMoney = inv.FeedMoney(userMoney);
+                            File.WriteAllText(fullPath,$"{DateTime.Today.Month}/{DateTime.Today.Day}/{DateTime.Today.Year}  {DateTime.Now.Hour}:{DateTime.Now.Minute}:{DateTime.Now.Second} FEED MONEY: {temp:C2} {userMoney:C2}");
                         }
                         else if (userInput.Equals("2"))
                         {
                             Console.Write("Please Enter Slot:");
-                            string userSelectionInput = Console.ReadLine();
+                            string userSelectionInput = Console.ReadLine().ToUpper();
                             if (inv.VendingInventory.ContainsKey(userSelectionInput))
                             {
                                 if (inv.VendingInventory[userSelectionInput].Quantity>0)
@@ -82,7 +87,8 @@ namespace Capstone
                         }
                         else if (userInput.Equals("3"))
                         {
-                            //transaction = false
+                            inv.GetChange(userMoney);
+                            transaction = false;
                         }
                         else
                         {

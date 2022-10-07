@@ -68,8 +68,6 @@ namespace Capstone
             {
                 Console.WriteLine($"{sn.Slot} | {sn.SnackName}: ${sn.Price}");
             }
-
-
         }
 
         public void DisplaySalesReport()
@@ -103,6 +101,16 @@ namespace Capstone
             money = money - VendingInventory[input].Price;
             VendingInventory[input].DispenseMessage();
             return money;
+        }
+        public void GetChange(decimal customerMoney)
+        {
+            decimal expanded = (customerMoney * 100);
+            decimal quarters = Math.Floor(expanded / 25);
+            decimal remaining = expanded % 25;
+            decimal dimes = Math.Floor(remaining / 10);
+            remaining = remaining % 10;
+            decimal nickels = Math.Floor(remaining / 5);
+            Console.WriteLine($"CHANGE RETURNED \nQuarters: {quarters}\nDimes: {dimes}\nNickels: {nickels}");
         }
     }
 }
