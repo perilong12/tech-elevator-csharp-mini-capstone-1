@@ -72,7 +72,14 @@ namespace Capstone
 
         public void DisplaySalesReport()
         {
-            //make the sales report
+            decimal totalSales = 0;
+
+            foreach(Snack sn in VendingInventory.Values)
+            {
+                Console.WriteLine(sn.SnackName + "|" + sn.TotalSold);
+                totalSales += (sn.TotalSold * sn.Price);  
+            }
+            Console.WriteLine($"**TOTAL SALES** {totalSales:C2}");
         }
 
         public decimal FeedMoney(decimal fedMoney)

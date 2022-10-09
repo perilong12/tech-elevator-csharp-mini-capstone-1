@@ -92,7 +92,7 @@ namespace Capstone
                         }
                         else
                         {
-                            //cw enter number 1-3
+                            Console.WriteLine("Please select a number 1 through 3.");
                         }
                     }
 

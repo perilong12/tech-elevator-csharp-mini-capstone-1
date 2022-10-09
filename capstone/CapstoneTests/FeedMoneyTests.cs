@@ -8,7 +8,7 @@ namespace CapstoneTests
     [TestClass()]
     public class FeedMoneyTests
     {
-        [TestMethod()]
+        [TestMethod]
 
         public void FeedMoneyTest()
         {
@@ -20,13 +20,13 @@ namespace CapstoneTests
             string word = "word";
 
             //act
-            decimal FeedMoney(legit)
+
 
             //assert
+            inv.FeedMoney(2)
+            {
 
+            }
         }
-
-
-
     }
 }
