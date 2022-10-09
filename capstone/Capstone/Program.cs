@@ -55,7 +55,7 @@ namespace Capstone
                         {
                             decimal temp = userMoney;
                             userMoney = inv.FeedMoney(userMoney);
-                            File.WriteAllText(fullPath,$"{DateTime.Today.Month}/{DateTime.Today.Day}/{DateTime.Today.Year}  {DateTime.Now.Hour}:{DateTime.Now.Minute}:{DateTime.Now.Second} FEED MONEY: {temp:C2} {userMoney:C2}");
+                            File.AppendAllText(fullPath,$"\n{DateTime.Today.Month}/{DateTime.Today.Day}/{DateTime.Today.Year}  {DateTime.Now.Hour}:{DateTime.Now.Minute}:{DateTime.Now.Second} FEED MONEY: {temp:C2} {userMoney:C2}");
                         }
                         else if (userInput.Equals("2"))
                         {
@@ -68,6 +68,7 @@ namespace Capstone
                                     if(inv.VendingInventory[userSelectionInput].Price <= userMoney)
                                     {
                                         userMoney = inv.Dispense(userSelectionInput, userMoney);
+                                        File.AppendAllText(fullPath, $"\n{DateTime.Today.Month}/{DateTime.Today.Day}/{DateTime.Today.Year}  {DateTime.Now.Hour}:{DateTime.Now.Minute}:{DateTime.Now.Second} {userSelectionInput} {inv.VendingInventory[userSelectionInput].SnackName} {userMoney:C2}");
                                     }
                                     else
                                     {
@@ -87,6 +88,7 @@ namespace Capstone
                         }
                         else if (userInput.Equals("3"))
                         {
+                            File.AppendAllText(fullPath, $"\n{DateTime.Today.Month}/{DateTime.Today.Day}/{DateTime.Today.Year}  {DateTime.Now.Hour}:{DateTime.Now.Minute}:{DateTime.Now.Second} GIVE CHANGE {userMoney:C2} $0.00");
                             inv.GetChange(userMoney);
                             transaction = false;
                         }
